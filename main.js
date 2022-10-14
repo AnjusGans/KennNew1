@@ -77,7 +77,8 @@ const msgRetryCounterMap = MessageRetryMap => { }
 
 global.authFile = `${opts._[0] || 'session'}.json`
 global.isInit = !fs.existsSync(authFile)
-let { state, saveCreds, saveState} = (global.useMulti) ? useMultiFileAuthState(global.authFile) : useSingleFileAuthState(global.authFile)
+const { state, saveState } = useSingleFileAuthState(global.authFile)
+
 //console.log(typeof state + typeof saveCreds + typeof saveState)
 
 saveCreds = (typeof saveCreds === 'undefined') ? saveState : saveCreds
