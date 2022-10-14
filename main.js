@@ -82,27 +82,13 @@ let { state, saveCreds, saveState} = (global.useMulti) ? useMultiFileAuthState(g
 
 saveCreds = (typeof saveCreds === 'undefined') ? saveState : saveCreds
 
-let config
-
-const connectionOptions = async() => {
-  config = (global.socket['retryMap']) ? { 
-    printQRInTerminal: (global.socket['qr']),
-    auth: state, 
-    logger: P({ level: 'silent'}),
-    receivedPendingNotifications: (global.socket['pendingMessage']), 
-    msgRetryCounterMap
-  } : { 
-    printQRInTerminal: (global.socket['qr']),
-    auth: state, 
-    logger: P({ level: 'silent'}),
-    receivedPendingNotifications: (global.socket['pendingMessage'])
-  }
-  return config
-}
-
-connectionOptions()
-
-global.conn = simple.makeWASocket(config)
+const hisoka = {
+        logger: P({ level: 'silent' }),
+        printQRInTerminal: true,
+        browser: ['Hisoka Multi Device','Safari','1.0.0'],
+        auth: state
+        }
+global.conn = simple.makeWASocket(hisoka)
 global.ev = global.conn.ev
 
 if (!opts['test']) {
