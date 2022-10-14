@@ -15,7 +15,12 @@ const syntaxerror = require('syntax-error')
 const P = require('pino')
 const os = require('os')
 let simple = require('./lib/simple')
-var low = require('lowdb')
+var low
+try {
+  low = require('lowdb')
+} catch (e) {
+  low = require('./lib/lowdb')
+}
 const mongoDB = require('./lib/mongoDB')
 const { Low, JSONFile } = low
 
