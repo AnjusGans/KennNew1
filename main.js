@@ -1,9 +1,8 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 require('./config')
 const {
-  useMultiFileAuthState,
-  DisconnectReason, 
-  MessageRetryMap, 
-  useSingleFileAuthState
+  useSingleFileAuthState,
+  DisconnectReason
 } = require('@adiwajshing/baileys')
 const WebSocket = require('ws')
 const path = require('path')
